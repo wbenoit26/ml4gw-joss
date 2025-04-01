@@ -1,41 +1,34 @@
 ---
-title: 'Gala: A Python package for galactic dynamics'
+title: 'ml4gw: PyTorch utilities for training neural networks in gravitational wave physics applications'
 tags:
   - Python
-  - astronomy
-  - dynamics
-  - galactic dynamics
-  - milky way
+  - PyTorch
+  - machine learning
+  - gravitational waves
 authors:
-  - name: Adrian M. Price-Whelan
-    orcid: 0000-0000-0000-0000
-    equal-contrib: true
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Author Without ORCID
-    equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
-    affiliation: 2
-  - name: Author with no affiliation
-    corresponding: true # (This is how to denote the corresponding author)
+  - name: William Benoit
+    orcid: 0000-0003-4750-9413
+    affiliation: 1 # (Multiple affiliations must be quoted)
+    corresponding: true
+  - name: Ethan Marx
+    orcid: 0009-0000-4183-7876
+    affiliation: "2, 3"
+  - name: Deep Chatterjee
+    orcid: 0000-0003-0038-5468
     affiliation: 3
-  - given-names: Ludwig
-    dropping-particle: van
-    surname: Beethoven
-    affiliation: 3
+  - name: Ravi Kumar
+    affiliation: 4
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University, United States
+ - name: University of Minnesota, USA
    index: 1
-   ror: 00hx57361
- - name: Institution Name, Country
+ - name: Massachusetts Institute of Technology, USA
    index: 2
- - name: Independent Researcher, Country
+ - name: MIT LIGO Laboratory, USA
    index: 3
-date: 13 August 2017
+ - name: Indian Institute of Technology Bombay, Inda
+   index: 4
+date: 1 April 2025
 bibliography: paper.bib
-
-# Optional fields if submitting to a AAS journal too, see this blog post:
-# https://blog.joss.theoj.org/2018/12/a-new-collaboration-with-aas-publishing
-aas-doi: 10.3847/xxxxx <- update this with the DOI from AAS once you know it.
-aas-journal: Astrophysical Journal <- The name of the AAS journal.
 ---
 
 # Summary
