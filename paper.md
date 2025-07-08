@@ -59,15 +59,13 @@ Additionally, `ml4gw` contains a number of general utility features.
 - Basic out-of-the-box neural network architectures to streamline the startup process for new users
 - Stateful modules for handling streaming data
 
-All implementations are fully differentiable, allowing algorithms to use physically-motivated loss functions.
+All implementations are fully differentiable, allowing algorithms to employ physically-motivated loss functions.
 These features make it possible to train models on large quantities realistic detector data, perform data augmentation consistent with physical priors, and evaluate results in a way that is directly comparable with existing pipelines.
-Figure 1 shows how these different components can be used to create an end-to-end pipeline using the example of a compact binary merger search algorithm.
-
-## Research using `ml4gw`
 
 `ml4gw` is used to support the development of multiple GW analyses. 
 It has been integrated into `DeepClean` [@deepclean], a noise-subtraction pipeline; `Aframe` [@aframe], a search pipeline for gravitational waves from compact binary mergers; GWAK [@gwak], a gravitational-wave anomaly detection pipeline; and AMPLFI [@amplfi], a gravitational-wave parameter estimation pipelines.
 `ml4gw` has enabled these algorithms to efficiently train ML models at scale and deploy models on real-time streaming data, while the use of a standardized tool set has allowed for easier communication between developers.
+The library is actively developed and maintained, with thorough unit testing, and the authors welcome contributions and collaborations.
 
 # Acknowledgements
 
