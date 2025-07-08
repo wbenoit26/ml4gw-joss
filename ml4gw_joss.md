@@ -5,6 +5,7 @@ tags:
   - PyTorch
   - machine learning
   - gravitational waves
+  - signal processing
 authors:
   - name: William Benoit
     orcid: 0000-0003-4750-9413
@@ -33,16 +34,42 @@ bibliography: references.bib
 
 # Summary
 
-`ml4gw` is a lightweight, PyTorch-based library designed to accelerate the development and deployment of machine learning (ML) models on gravitational-wave (GW) timeseries data. Built to provide familiar functionality to anyone used to working with CPU-based GW libraries, `ml4gw` lowers the barrier to entry for GW researchers who want to incorporate ML into their work and take advantage of accelerated hardware. The library was originally developed with a focus on utilities for GW detection, but has a modular and extensible structure that enables it to support other areas of research. Ultimately, the aim is to provide a common set of tools for scientists in the field and reduce duplication of efforts.
+`ml4gw` is a lightweight, PyTorch-based library designed to support the development, scaling, deployment of machine learning (ML) models on gravitational-wave (GW) timeseries data. 
+Built to provide familiar functionality to anyone used to working with standard CPU-based GW libraries, `ml4gw` lowers the barrier to entry for GW researchers who want to incorporate ML into their work and take advantage of optimized hardware. 
+Its design focuses on bridging the gap between domain-specific GW signal processing and general-purpose ML development, allowing researchers to build the tools needed to accomplish their scientific goals without getting stuck on infrastructure overhead. 
+By simplifying the interface between domain science and model training, `ml4gw` accelerates the creation of robust, physically-informed ML pipelines for gravitational-wave astrophysics.
 
 # Statement of need
 
-# Research using `ml4gw`
+Machine-learning algorithms are well-suited for applications in gravitational-wave astrophysics due to the field's abundance of high-quality data.
+The existence of multiple independent GW detectors allows for effectively unlimited combinations of noise samples, and, for the most common signal morphologies, the high-fidelity simulations provided by General Relativity allow as many signal samples as desired.
+However, the standard GW libraries are not designed for the scale or speed desired for ML development; conversely, standard ML libraries lack the domain-specific preprocessing functions and waveform handling tools required to train models for GW applications.
 
+`ml4gw` addresses this gap by re-writing common GW processing steps as PyTorch [@pytorch] modules, taking advantage of the natural parallelization that comes with PyTorch's batch processing, and adding the option to accelerate these steps using GPUs.
+From libraries such as GWpy [@gwpy], `ml4gw` re-implements power spectral density estimation, signal-to-noise ratio calculation, whitening filters, and Q-transforms.
+Like bilby [@bilby], `ml4gw` provides the functionality to sample from astrophysical parameter distributions, which can then be used to simulate waveforms.
+`ml4gw` has available basic compact binary merger waveforms (TaylorF2, IMRPhenomD, and IMRPhenomPv2) as well as sine-gaussian waveforms for capturing unmodeled GW signals, with more complex waveforms planned for the future, mimicking the simulation features of lalsuite [@lalsuite].
 
+Additionally, `ml4gw` contains a number of general utility features.
 
-# Future work
+- Efficient out-of-memory dataloading to scale the quantity of data used for training
+- Random sampling of windows from batches of multi-channel time-series data
+- Cubic spline interpolation to supplement PyTorch's existing interpolation functions
+- Basic out-of-the-box neural network architectures to streamline the startup process for new users
+- Stateful modules for handling streaming data
+
+All implementations are fully differentiable, allowing algorithms to use physically-motivated loss functions.
+These features make it possible to train models on large quantities realistic detector data, perform data augmentation consistent with physical priors, and evaluate results in a way that is directly comparable with existing pipelines.
+Figure [figure] shows how these different components can be used to create an end-to-end pipeline using the example of a compact binary merger search algorithm.
+
+## Research using `ml4gw`
+
+`ml4gw` is used to support the development of multiple GW analyses. 
+It has been integrated into `DeepClean` [@deepclean], a noise-subtraction pipeline; `Aframe` [@aframe], a search pipeline for gravitational waves from compact binary mergers; GWAK [@gwak], a gravitational-wave anomaly detection pipeline; and AMPLFI [@amplfi], a gravitational-wave parameter estimation pipelines.
+`ml4gw` has enabled these algorithms to efficiently train ML models at scale and deploy models on real-time streaming data, while the use of a standardized tool set has allowed for easier communication between developers.
 
 # Acknowledgements
+
+This work was supported by the U.S. National Science Foundation (NSF) Harnessing the Data Revolution (HDR) Institute for Accelerating AI Algorithms for Data Driven Discovery (A3D3) under Cooperative Agreement No. PHY-2117997.
 
 # References
