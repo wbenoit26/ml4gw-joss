@@ -49,6 +49,7 @@ However, the standard GW libraries are not designed for the scale or speed desir
 From libraries such as GWpy [@gwpy], `ml4gw` re-implements power spectral density estimation, signal-to-noise ratio calculation, whitening filters, and Q-transforms.
 Like bilby [@bilby], `ml4gw` provides the functionality to sample from astrophysical parameter distributions, which can then be used to simulate waveforms.
 `ml4gw` has available basic compact binary merger waveforms (TaylorF2, IMRPhenomD, and IMRPhenomPv2) as well as sine-gaussian waveforms for capturing unmodeled GW signals, with more complex waveforms planned for the future, mimicking the simulation features of lalsuite [@lalsuite].
+All of these modules have been designed to work with batches of multi-channel time-series data, run on accelerated hardware, and be composable so that the output of one function can easily become the input of another.
 
 Additionally, `ml4gw` contains a number of general utility features.
 
@@ -60,7 +61,7 @@ Additionally, `ml4gw` contains a number of general utility features.
 
 All implementations are fully differentiable, allowing algorithms to use physically-motivated loss functions.
 These features make it possible to train models on large quantities realistic detector data, perform data augmentation consistent with physical priors, and evaluate results in a way that is directly comparable with existing pipelines.
-Figure [figure] shows how these different components can be used to create an end-to-end pipeline using the example of a compact binary merger search algorithm.
+Figure 1 shows how these different components can be used to create an end-to-end pipeline using the example of a compact binary merger search algorithm.
 
 ## Research using `ml4gw`
 
