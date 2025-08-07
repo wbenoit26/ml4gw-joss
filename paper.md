@@ -34,27 +34,28 @@ bibliography: references.bib
 
 # Summary
 
-`ml4gw` is a lightweight, PyTorch-based library designed to support the development, scaling, deployment of machine learning (ML) models on gravitational-wave (GW) timeseries data. 
+`ml4gw` is a lightweight, PyTorch-based library designed to support the development, scaling, and deployment of machine learning (ML) models for gravitational-wave (GW) data analysis. 
 Built to provide familiar functionality to anyone used to working with standard CPU-based GW libraries, `ml4gw` lowers the barrier to entry for GW researchers who want to incorporate ML into their work and take advantage of optimized hardware. 
 Its design focuses on bridging the gap between domain-specific GW signal processing and general-purpose ML development, allowing researchers to build the tools needed to accomplish their scientific goals without getting stuck on infrastructure overhead. 
 By simplifying the interface between domain science and model training, `ml4gw` accelerates the creation of robust, physically-informed ML pipelines for gravitational-wave astrophysics.
 
 # Statement of need
 
-Machine-learning algorithms are well-suited for applications in gravitational-wave astrophysics due to the field's abundance of high-quality data.
-The existence of multiple independent GW detectors allows for effectively unlimited combinations of noise samples, and, for the most common signal morphologies, the high-fidelity simulations provided by General Relativity allow as many signal samples as desired.
+Machine-learning algorithms are well-suited for applications in GW astrophysics due to the field's abundance of high-quality data.
+The existence of multiple independent GW detectors allows for effectively unlimited combinations of noise samples via time-shifts, and, for the most common signal morphologies, the high-fidelity simulations provided by General Relativity allow as many signal samples as desired.
 However, the standard GW libraries are not designed for the scale or speed desired for ML development; conversely, standard ML libraries lack the domain-specific preprocessing functions and waveform handling tools required to train models for GW applications.
 
-`ml4gw` addresses this gap by re-writing common GW processing steps as PyTorch [@pytorch] modules, taking advantage of the natural parallelization that comes with PyTorch's batch processing, and adding the option to accelerate these steps using GPUs.
+`ml4gw` addresses this gap by re-writing common GW processing steps as PyTorch [@pytorch] modules, taking advantage of the natural parallelization that comes with PyTorch's batch processing, and adding the option to accelerate these steps using GPUs and other coprocessors supported by the PyTorch framework.
 From libraries such as GWpy [@gwpy], `ml4gw` re-implements power spectral density estimation, signal-to-noise ratio calculation, whitening filters, and Q-transforms.
-Like bilby [@bilby], `ml4gw` provides the functionality to sample from astrophysical parameter distributions, which can then be used to simulate waveforms.
-`ml4gw` has available basic compact binary merger waveforms (TaylorF2, IMRPhenomD, and IMRPhenomPv2) as well as sine-gaussian waveforms for capturing unmodeled GW signals, with more complex waveforms planned for the future, mimicking the simulation features of lalsuite [@lalsuite].
+Like bilby [@bilby], `ml4gw` provides the functionality to sample from astrophysical parameter distributions, which can then be used to simulate waveforms, mimicking the simulation features of lalsuite [@lalsuite].
+`ml4gw` has available basic compact binary merger waveform families used in online searches and inference (TaylorF2, IMRPhenomD, and IMRPhenomPv2), as well as sine-gaussian waveforms for capturing unmodeled GW signals, with more complex waveforms planned for the future.
 All of these modules have been designed to work with batches of multi-channel time-series data, run on accelerated hardware, and be composable so that the output of one function can easily become the input of another.
 
 Additionally, `ml4gw` contains a number of general utility features.
 
 - Efficient out-of-memory dataloading to scale the quantity of data used for training
 - Random sampling of windows from batches of multi-channel time-series data
+- On-the-fly signal generation for efficient scaling of training data
 - Cubic spline interpolation to supplement PyTorch's existing interpolation functions
 - Basic out-of-the-box neural network architectures to streamline the startup process for new users
 - Stateful modules for handling streaming data
